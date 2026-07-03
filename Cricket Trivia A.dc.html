@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,500&family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: #F7F5EE; }
+  * { box-sizing: border-box; }
+  ::selection { background: #C89B3C; color: #143C2A; }
+</style>
+</helmet>
+
+<div style="font-family: 'Public Sans', sans-serif; background: #F7F5EE; min-height: 100vh; color: #1B2A22;">
+
+  <!-- ============ TOP NAV ============ -->
+  <div style="display:flex; align-items:center; justify-content:space-between; padding:20px 48px; border-bottom:2px solid #143C2A; background:#F7F5EE;">
+    <div style="display:flex; align-items:baseline; gap:10px;">
+      <span style="font-family:'Newsreader',serif; font-weight:600; font-size:28px; letter-spacing:-0.5px; color:#143C2A;">Stumped<span style="color:#C89B3C;">.</span></span>
+      <span style="font-size:11px; letter-spacing:1.5px; text-transform:uppercase; color:rgba(27,42,34,0.5); font-weight:600;">Guess the Cricketer</span>
+    </div>
+    <div style="display:flex; align-items:center; gap:28px;">
+      <a href="#" onClick="{{ goHome }}" style="font-size:14px; font-weight:600; color:{{ navHomeColor }}; text-decoration:none;">Home</a>
+      <a href="#" onClick="{{ goPlayFromNav }}" style="font-size:14px; font-weight:600; color:{{ navPlayColor }}; text-decoration:none;">Play</a>
+      <a href="#" onClick="{{ goProfile }}" style="font-size:14px; font-weight:600; color:{{ navProfileColor }}; text-decoration:none;">Profile</a>
+      <div style="display:flex; align-items:center; gap:6px; background:#143C2A; color:#F7F5EE; padding:8px 14px; border-radius:20px; font-size:13px; font-weight:700;">
+        <span>🔥</span><span>5</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ HOME ============ -->
+  <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+    <div style="max-width:1180px; margin:0 auto; padding:56px 48px 80px;">
+      <div style="display:grid; grid-template-columns:1.2fr 0.8fr; gap:56px; align-items:center; border-bottom:1px solid rgba(20,60,42,0.15); padding-bottom:48px;">
+        <div>
+          <div style="font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#C89B3C; margin-bottom:16px;">Edition No. 142 · Today</div>
+          <h1 style="font-family:'Newsreader',serif; font-size:56px; line-height:1.05; font-weight:600; margin:0 0 20px; color:#143C2A;">Who's today's<br>cricketer?</h1>
+          <p style="font-size:17px; line-height:1.6; color:rgba(27,42,34,0.75); max-width:460px; margin:0 0 32px;">Three mystery cricketers, eight hints each. The fewer hints you need, the higher you score. New edition daily.</p>
+          <button onClick="{{ startGame }}" style="background:#143C2A; color:#F7F5EE; border:none; padding:16px 32px; font-size:16px; font-weight:700; border-radius:6px; cursor:pointer; font-family:'Public Sans',sans-serif;">Play Today's Edition →</button>
+        </div>
+        <div style="background:#fff; border:1px solid rgba(20,60,42,0.15); border-radius:10px; overflow:hidden; box-shadow:0 12px 32px rgba(20,60,42,0.08);">
+          <div style="height:220px; background:linear-gradient(135deg,#1F5C3F,#143C2A); filter:blur(14px); display:flex; align-items:center; justify-content:center;"></div>
+          <div style="padding:18px 20px;">
+            <div style="font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:rgba(27,42,34,0.5);">Hint 1 of 8</div>
+            <div style="font-family:'Newsreader',serif; font-style:italic; font-size:18px; margin-top:6px; color:#1B2A22;">"Right-handed top-order batter…"</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:rgba(20,60,42,0.15); margin-top:40px; border:1px solid rgba(20,60,42,0.15); border-radius:8px; overflow:hidden;">
+        <div style="background:#F7F5EE; padding:24px;">
+          <div style="font-family:'Newsreader',serif; font-size:34px; font-weight:600; color:#143C2A;">27</div>
+          <div style="font-size:12px; color:rgba(27,42,34,0.6); margin-top:4px; font-weight:600;">Games Played</div>
+        </div>
+        <div style="background:#F7F5EE; padding:24px;">
+          <div style="font-family:'Newsreader',serif; font-size:34px; font-weight:600; color:#143C2A;">74%</div>
+          <div style="font-size:12px; color:rgba(27,42,34,0.6); margin-top:4px; font-weight:600;">Win Rate</div>
+        </div>
+        <div style="background:#F7F5EE; padding:24px;">
+          <div style="font-family:'Newsreader',serif; font-size:34px; font-weight:600; color:#143C2A;">5</div>
+          <div style="font-size:12px; color:rgba(27,42,34,0.6); margin-top:4px; font-weight:600;">Current Streak</div>
+        </div>
+        <div style="background:#F7F5EE; padding:24px;">
+          <div style="font-family:'Newsreader',serif; font-size:34px; font-weight:600; color:#143C2A;">3.2</div>
+          <div style="font-size:12px; color:rgba(27,42,34,0.6); margin-top:4px; font-weight:600;">Avg. Hints Used</div>
+        </div>
+      </div>
+
+      <div style="margin-top:48px;">
+        <div style="display:flex; align-items:baseline; justify-content:space-between; margin-bottom:18px;">
+          <div style="font-family:'Newsreader',serif; font-size:22px; font-weight:600; color:#143C2A;">Past Editions</div>
+          <div style="font-size:12px; color:rgba(27,42,34,0.5); font-weight:600;">Click a card to replay it</div>
+        </div>
+        <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px;">
+          <sc-for list="{{ pastEditions }}" as="pe" hint-placeholder-count="4">
+            <div onClick="{{ pe.onPlay }}" style="background:#fff; border:1px solid rgba(20,60,42,0.12); border-radius:8px; padding:16px; cursor:pointer; transition:box-shadow 0.15s ease;" style-hover="box-shadow:0 6px 18px rgba(20,60,42,0.12); border-color:rgba(20,60,42,0.3);">
+              <div style="display:flex; justify-content:space-between; align-items:center;"><span style="font-size:12px; font-weight:700; color:rgba(27,42,34,0.5);">Edition {{ pe.edition }}</span><span style="color:{{ pe.resultColor }}; font-weight:700;">{{ pe.resultIcon }}</span></div>
+              <div style="font-family:'Newsreader',serif; font-weight:600; margin-top:8px; font-size:15px;">{{ pe.name }}</div>
+              <div style="font-size:12px; color:rgba(27,42,34,0.55); margin-top:2px;">{{ pe.subtitle }}</div>
+              <div style="font-size:12px; color:#1F5C3F; font-weight:700; margin-top:10px;">Play again →</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ============ PLAY ============ -->
+  <sc-if value="{{ isPlay }}">
+    <div style="max-width:1180px; margin:0 auto; padding:44px 48px 80px;">
+      <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:28px;">
+        <div style="font-size:13px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:rgba(27,42,34,0.55);">{{ roundHeaderLabel }}</div>
+        <div style="display:flex; align-items:center; gap:18px;">
+          <div style="font-size:13px; font-weight:600; color:rgba(27,42,34,0.6);">Hint {{ hintsRevealed }} of 8</div>
+          <div style="font-size:13px; font-weight:700; color:#C89B3C;">Potential: {{ potentialScore }} pts</div>
+        </div>
+      </div>
+
+      <div style="height:6px; background:rgba(20,60,42,0.1); border-radius:3px; overflow:hidden; margin-bottom:36px;">
+        <div style="height:100%; background:#1F5C3F; width:{{ progressPct }}; transition:width 0.3s ease;"></div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:0.85fr 1.15fr; gap:44px;">
+        <div>
+          <div style="background:#fff; border:1px solid rgba(20,60,42,0.15); border-radius:10px; overflow:hidden; box-shadow:0 12px 32px rgba(20,60,42,0.08);">
+            <div style="position:relative; height:340px; background:#143C2A;">
+              <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="{{ photoSlotId }}" style="width:100%;height:100%;filter:{{ photoBlur }};transition:filter 0.4s ease;" shape="rect" placeholder="Drop the cricketer's photo" hint-size="100%,340px"></x-import>
+            </div>
+            <div style="padding:16px 20px; border-top:1px solid rgba(20,60,42,0.1);">
+              <div style="font-size:12px; font-weight:700; color:rgba(27,42,34,0.5); text-transform:uppercase; letter-spacing:1px;">Photo clarity</div>
+              <div style="font-size:13px; color:rgba(27,42,34,0.7); margin-top:4px;">Sharpens with every hint revealed</div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div style="background:#fff; border:1px solid rgba(20,60,42,0.15); border-radius:10px; padding:8px 0;">
+            <sc-for list="{{ hintRows }}" as="h" hint-placeholder-count="8">
+              <div style="display:flex; align-items:flex-start; gap:14px; padding:14px 22px; border-bottom:1px solid rgba(20,60,42,0.08);">
+                <div style="width:24px; height:24px; border-radius:50%; background:{{ h.badgeBg }}; color:{{ h.badgeColor }}; font-size:12px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px;">{{ h.num }}</div>
+                <div style="font-size:15px; line-height:1.5; color:{{ h.textColor }}; font-family:{{ h.font }}; font-style:{{ h.fontStyle }};">{{ h.display }}</div>
+              </div>
+            </sc-for>
+          </div>
+          <button onClick="{{ revealNextHint }}" disabled="{{ noMoreHints }}" style="margin-top:14px; width:100%; background:#fff; border:1.5px dashed rgba(20,60,42,0.4); color:#143C2A; padding:13px; border-radius:8px; font-size:14px; font-weight:700; cursor:pointer; font-family:'Public Sans',sans-serif;">{{ revealButtonLabel }}</button>
+
+          <div style="margin-top:28px;">
+            <div style="font-size:13px; font-weight:700; color:rgba(27,42,34,0.6); margin-bottom:10px;">Your guess</div>
+            <sc-if value="{{ wrongFlash }}">
+              <div style="background:rgba(179,67,43,0.1); border:1px solid rgba(179,67,43,0.3); color:#B3432B; padding:10px 14px; border-radius:8px; font-size:13px; font-weight:600; margin-bottom:12px;">✗ Not quite — {{ attemptsLeftLabel }}. Try again or reveal another hint.</div>
+            </sc-if>
+            <div style="display:flex; gap:10px;">
+              <input value="{{ guessValue }}" onChange="{{ onGuessChange }}" placeholder="Type a cricketer's name…" style="flex:1; padding:14px 16px; border:1.5px solid {{ inputBorderColor }}; border-radius:8px; font-size:15px; font-family:'Public Sans',sans-serif; background:#fff;"></input>
+              <button onClick="{{ submitGuess }}" style="background:#143C2A; color:#F7F5EE; border:none; padding:14px 26px; border-radius:8px; font-size:15px; font-weight:700; cursor:pointer; font-family:'Public Sans',sans-serif; white-space:nowrap;">Submit</button>
+            </div>
+            <div style="display:flex; gap:8px; margin-top:12px; flex-wrap:wrap;">
+              <sc-for list="{{ decoyChips }}" as="c" hint-placeholder-count="4">
+                <button onClick="{{ c.onPick }}" style="background:rgba(20,60,42,0.06); border:1px solid rgba(20,60,42,0.15); color:#143C2A; padding:8px 16px; border-radius:20px; font-size:13px; font-weight:600; cursor:pointer; font-family:'Public Sans',sans-serif;">{{ c.name }}</button>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ============ REVEAL ============ -->
+  <sc-if value="{{ isReveal }}">
+    <div style="max-width:900px; margin:0 auto; padding:56px 48px 80px;">
+      <div style="text-align:center; margin-bottom:36px;">
+        <div style="display:inline-flex; align-items:center; gap:10px; background:{{ resultBg }}; color:{{ resultColor }}; padding:10px 22px; border-radius:24px; font-size:14px; font-weight:700;">
+          <span>{{ resultIcon }}</span><span>{{ resultLabel }}</span>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:280px 1fr; gap:40px; background:#fff; border:1px solid rgba(20,60,42,0.15); border-radius:12px; padding:36px; box-shadow:0 16px 40px rgba(20,60,42,0.08);">
+        <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="{{ photoSlotId }}" style="width:280px;height:280px;border-radius:10px;" shape="rounded" placeholder="Drop the cricketer's photo" hint-size="280px,280px"></x-import>
+        <div>
+          <div style="font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:rgba(27,42,34,0.5); margin-bottom:8px;">The Answer</div>
+          <h2 style="font-family:'Newsreader',serif; font-size:38px; font-weight:600; margin:0 0 14px; color:#143C2A;">{{ currentPlayerName }}</h2>
+          <p style="font-size:15px; line-height:1.6; color:rgba(27,42,34,0.75); margin:0 0 22px;">{{ currentPlayerFact }}</p>
+          <div style="display:flex; gap:32px;">
+            <div>
+              <div style="font-family:'Newsreader',serif; font-size:26px; font-weight:600; color:#143C2A;">{{ hintsRevealed }}</div>
+              <div style="font-size:12px; color:rgba(27,42,34,0.55); font-weight:600;">Hints used</div>
+            </div>
+            <div>
+              <div style="font-family:'Newsreader',serif; font-size:26px; font-weight:600; color:#C89B3C;">{{ pointsEarned }}</div>
+              <div style="font-size:12px; color:rgba(27,42,34,0.55); font-weight:600;">Points earned</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:flex; justify-content:center; margin-top:32px;">
+        <button onClick="{{ nextRound }}" style="background:#143C2A; color:#F7F5EE; border:none; padding:16px 36px; font-size:16px; font-weight:700; border-radius:6px; cursor:pointer; font-family:'Public Sans',sans-serif;">{{ nextButtonLabel }}</button>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ============ RESULTS ============ -->
+  <sc-if value="{{ isResults }}">
+    <div style="max-width:820px; margin:0 auto; padding:56px 48px 80px;">
+      <div style="text-align:center; margin-bottom:40px;">
+        <div style="font-size:12px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#C89B3C; margin-bottom:12px;">Edition No. 142 · Complete</div>
+        <div style="font-family:'Newsreader',serif; font-size:64px; font-weight:600; color:#143C2A;">{{ totalScore }} pts</div>
+        <div style="font-size:15px; color:rgba(27,42,34,0.65); margin-top:8px;">{{ correctCount }} of 7 correct · Best streak this round: {{ bestStreak }}</div>
+      </div>
+
+      <div style="background:#fff; border:1px solid rgba(20,60,42,0.15); border-radius:10px; overflow:hidden;">
+        <div style="display:grid; grid-template-columns:2fr 1fr 1fr 1fr; padding:14px 24px; background:rgba(20,60,42,0.06); font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; color:rgba(27,42,34,0.55);">
+          <div>Cricketer</div><div>Result</div><div>Hints</div><div>Points</div>
+        </div>
+        <sc-for list="{{ sessionLog }}" as="row" hint-placeholder-count="7">
+          <div style="display:grid; grid-template-columns:2fr 1fr 1fr 1fr; padding:18px 24px; border-top:1px solid rgba(20,60,42,0.08); align-items:center;">
+            <div style="font-family:'Newsreader',serif; font-size:17px; font-weight:600; color:#1B2A22;">{{ row.name }}</div>
+            <div style="color:{{ row.resultColor }}; font-weight:700; font-size:14px;">{{ row.resultLabel }}</div>
+            <div style="font-size:14px; color:rgba(27,42,34,0.7);">{{ row.hintsUsed }}</div>
+            <div style="font-size:14px; font-weight:700; color:#C89B3C;">{{ row.points }}</div>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="display:flex; gap:14px; justify-content:center; margin-top:32px;">
+        <button onClick="{{ playAgain }}" style="background:#143C2A; color:#F7F5EE; border:none; padding:15px 30px; font-size:15px; font-weight:700; border-radius:6px; cursor:pointer; font-family:'Public Sans',sans-serif;">Play Again</button>
+        <button onClick="{{ goProfile }}" style="background:#fff; color:#143C2A; border:1.5px solid rgba(20,60,42,0.3); padding:15px 30px; font-size:15px; font-weight:700; border-radius:6px; cursor:pointer; font-family:'Public Sans',sans-serif;">View Profile</button>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ============ PROFILE ============ -->
+  <sc-if value="{{ isProfile }}">
+    <div style="max-width:1000px; margin:0 auto; padding:56px 48px 80px;">
+      <div style="display:flex; align-items:center; gap:24px; padding-bottom:36px; border-bottom:1px solid rgba(20,60,42,0.15); margin-bottom:36px;">
+        <x-import component-from-global-scope="image-slot" from="./image-slot.js" id="profile-avatar-a" style="width:96px;height:96px;" shape="circle" placeholder="Photo" hint-size="96px,96px"></x-import>
+        <div>
+          <div style="font-family:'Newsreader',serif; font-size:28px; font-weight:600; color:#143C2A;">Maya Fernando</div>
+          <div style="font-size:14px; color:rgba(27,42,34,0.6); margin-top:4px;">Member since March 2024 · 🔥 5-day streak</div>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(20,60,42,0.15); border:1px solid rgba(20,60,42,0.15); border-radius:8px; overflow:hidden; margin-bottom:44px;">
+        <div style="background:#fff; padding:22px 24px;"><div style="font-family:'Newsreader',serif; font-size:30px; font-weight:600; color:#143C2A;">142</div><div style="font-size:12px; color:rgba(27,42,34,0.6); font-weight:600; margin-top:4px;">Games Played</div></div>
+        <div style="background:#fff; padding:22px 24px;"><div style="font-family:'Newsreader',serif; font-size:30px; font-weight:600; color:#143C2A;">105</div><div style="font-size:12px; color:rgba(27,42,34,0.6); font-weight:600; margin-top:4px;">Correct Guesses</div></div>
+        <div style="background:#fff; padding:22px 24px;"><div style="font-family:'Newsreader',serif; font-size:30px; font-weight:600; color:#143C2A;">74%</div><div style="font-size:12px; color:rgba(27,42,34,0.6); font-weight:600; margin-top:4px;">Win Rate</div></div>
+        <div style="background:#fff; padding:22px 24px;"><div style="font-family:'Newsreader',serif; font-size:30px; font-weight:600; color:#143C2A;">3.2</div><div style="font-size:12px; color:rgba(27,42,34,0.6); font-weight:600; margin-top:4px;">Avg. Hints Used</div></div>
+        <div style="background:#fff; padding:22px 24px;"><div style="font-family:'Newsreader',serif; font-size:30px; font-weight:600; color:#143C2A;">Hint 1</div><div style="font-size:12px; color:rgba(27,42,34,0.6); font-weight:600; margin-top:4px;">Fastest Correct Guess</div></div>
+        <div style="background:#fff; padding:22px 24px;"><div style="font-family:'Newsreader',serif; font-size:30px; font-weight:600; color:#143C2A;">12</div><div style="font-size:12px; color:rgba(27,42,34,0.6); font-weight:600; margin-top:4px;">Longest Streak</div></div>
+      </div>
+
+      <div style="font-family:'Newsreader',serif; font-size:22px; font-weight:600; color:#143C2A; margin-bottom:18px;">Badges</div>
+      <div style="display:flex; gap:14px; margin-bottom:44px; flex-wrap:wrap;">
+        <div style="background:#fff; border:1px solid rgba(20,60,42,0.15); border-radius:8px; padding:16px 20px; text-align:center; width:140px;"><div style="font-size:28px;">🏏</div><div style="font-size:13px; font-weight:700; color:#143C2A; margin-top:8px;">First Ball</div><div style="font-size:11px; color:rgba(27,42,34,0.55); margin-top:2px;">Guessed on hint 1</div></div>
+        <div style="background:#fff; border:1px solid rgba(20,60,42,0.15); border-radius:8px; padding:16px 20px; text-align:center; width:140px;"><div style="font-size:28px;">💯</div><div style="font-size:13px; font-weight:700; color:#143C2A; margin-top:8px;">Century</div><div style="font-size:11px; color:rgba(27,42,34,0.55); margin-top:2px;">100 games played</div></div>
+        <div style="background:#fff; border:1px solid rgba(20,60,42,0.15); border-radius:8px; padding:16px 20px; text-align:center; width:140px;"><div style="font-size:28px;">🔥</div><div style="font-size:13px; font-weight:700; color:#143C2A; margin-top:8px;">On Fire</div><div style="font-size:11px; color:rgba(27,42,34,0.55); margin-top:2px;">5-day streak</div></div>
+      </div>
+
+      <div style="font-family:'Newsreader',serif; font-size:22px; font-weight:600; color:#143C2A; margin-bottom:18px;">Recent Editions</div>
+      <div style="background:#fff; border:1px solid rgba(20,60,42,0.15); border-radius:10px; overflow:hidden;">
+        <sc-for list="{{ pastEditions }}" as="pe" hint-placeholder-count="4">
+          <div onClick="{{ pe.onPlay }}" style="display:flex; justify-content:space-between; align-items:center; padding:16px 22px; border-bottom:1px solid rgba(20,60,42,0.08); cursor:pointer;" style-hover="background:rgba(20,60,42,0.04);">
+            <span style="font-size:14px; color:rgba(27,42,34,0.6);">Edition {{ pe.edition }} — {{ pe.name }}</span>
+            <div style="display:flex; align-items:center; gap:14px;">
+              <span style="color:{{ pe.resultColor }}; font-weight:700; font-size:13px;">{{ pe.resultIcon }} {{ pe.subtitle }}</span>
+              <span style="color:#1F5C3F; font-weight:700; font-size:12px;">Replay →</span>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </sc-if>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const SESSION_SIZE = 7;
+
+class Component extends DCLogic {
+  state = {
+    screen: 'home',
+    roundIndex: 0,
+    hintsRevealed: 1,
+    guessValue: '',
+    sessionLog: [],
+    lastCorrect: false,
+    lastPoints: 0,
+    decoyOrder: [0, 1, 2, 3],
+    mode: 'session',
+    replayIndex: null,
+    wrongFlash: false,
+  };
+
+  players = null;
+  getPlayers() {
+    if (!this.players) this.players = window.__PLAYERS__ || [];
+    return this.players;
+  }
+
+  componentDidMount() {
+    import('./game-data.js').then(mod => {
+      this.PLAYERS = mod.PLAYERS;
+      this.scoreForHintIndex = mod.scoreForHintIndex;
+      this.forceUpdate();
+    });
+  }
+
+  sessionPlayers() {
+    return (this.PLAYERS || []).slice(0, SESSION_SIZE);
+  }
+
+  goHome = () => this.setState({ screen: 'home' });
+  goPlayFromNav = () => {
+    if (this.state.screen === 'home') this.startGame();
+  };
+  goProfile = () => this.setState({ screen: 'profile' });
+
+  startGame = () => {
+    this.setState({ screen: 'play', roundIndex: 0, hintsRevealed: 1, guessValue: '', sessionLog: [], mode: 'session', replayIndex: null, wrongFlash: false });
+  };
+
+  playPastEdition = (playerIdx) => {
+    this.setState({ screen: 'play', mode: 'replay', replayIndex: playerIdx, hintsRevealed: 1, guessValue: '', wrongFlash: false });
+  };
+
+  getCurrentPlayer() {
+    const all = this.PLAYERS || [];
+    if (this.state.mode === 'replay') return all[this.state.replayIndex] || { name: '', hints: [], fact: '', id: 'x' };
+    return this.sessionPlayers()[this.state.roundIndex] || { name: '', hints: [], fact: '', id: 'x' };
+  }
+
+  revealNextHint = () => {
+    this.setState(s => ({ hintsRevealed: Math.min(8, s.hintsRevealed + 1), wrongFlash: false }));
+  };
+
+  onGuessChange = (e) => this.setState({ guessValue: e.target.value, wrongFlash: false });
+
+  submitGuess = () => {
+    const player = this.getCurrentPlayer();
+    if (!player || !player.name) return;
+    const norm = (s) => (s || '').trim().toLowerCase();
+    const guess = norm(this.state.guessValue);
+    const full = norm(player.name);
+    const last = norm(player.name.split(' ').slice(-1)[0]);
+    const correct = guess.length > 0 && (guess === full || guess === last);
+    const isReplay = this.state.mode === 'replay';
+    const outOfHints = this.state.hintsRevealed >= 8;
+
+    if (!correct && !outOfHints) {
+      // Wrong guess but hints remain — let them keep trying, don't end the round.
+      this.setState({ guessValue: '', wrongFlash: true });
+      return;
+    }
+
+    const points = correct ? (this.scoreForHintIndex ? this.scoreForHintIndex(this.state.hintsRevealed - 1) : 0) : 0;
+    const entry = {
+      name: player.name,
+      correct,
+      hintsUsed: this.state.hintsRevealed,
+      points,
+    };
+    this.setState(s => ({
+      screen: 'reveal',
+      lastCorrect: correct,
+      lastPoints: points,
+      wrongFlash: false,
+      sessionLog: isReplay ? s.sessionLog : [...s.sessionLog, entry],
+    }));
+  };
+
+  pickDecoy = (name) => {
+    this.setState({ guessValue: name });
+  };
+
+  nextRound = () => {
+    if (this.state.mode === 'replay') {
+      this.setState({ screen: 'home', mode: 'session', replayIndex: null });
+      return;
+    }
+    const isLast = this.state.roundIndex >= SESSION_SIZE - 1;
+    if (isLast) {
+      this.setState({ screen: 'results' });
+    } else {
+      this.setState(s => ({ screen: 'play', roundIndex: s.roundIndex + 1, hintsRevealed: 1, guessValue: '', wrongFlash: false }));
+    }
+  };
+
+  playAgain = () => this.startGame();
+
+  renderVals() {
+    const players = this.sessionPlayers();
+    const screen = this.state.screen;
+    const player = this.getCurrentPlayer();
+    const hintsRevealed = this.state.hintsRevealed;
+    const isReplay = this.state.mode === 'replay';
+
+    const EDITION_META = [
+      { edition: 138, playerIdx: 0, resultIcon: '✓', resultColor: '#1F5C3F', subtitle: 'Guessed on hint 1' },
+      { edition: 139, playerIdx: 1, resultIcon: '✗', resultColor: '#B3432B', subtitle: 'Not guessed' },
+      { edition: 140, playerIdx: 2, resultIcon: '✓', resultColor: '#1F5C3F', subtitle: 'Guessed on hint 4' },
+      { edition: 141, playerIdx: 3, resultIcon: '✓', resultColor: '#1F5C3F', subtitle: 'Guessed on hint 2' },
+    ];
+    const allPlayers = this.PLAYERS || [];
+    const pastEditions = EDITION_META.slice().reverse().map(m => ({
+      edition: m.edition,
+      name: allPlayers[m.playerIdx] ? allPlayers[m.playerIdx].name : '',
+      resultIcon: m.resultIcon,
+      resultColor: m.resultColor,
+      subtitle: m.subtitle,
+      onPlay: () => this.playPastEdition(m.playerIdx),
+    }));
+
+    const hintRows = (player.hints || []).map((text, i) => {
+      const revealed = i < hintsRevealed;
+      return {
+        num: i + 1,
+        display: revealed ? text : '••••••••••••••••••••',
+        badgeBg: revealed ? '#1F5C3F' : 'rgba(20,60,42,0.1)',
+        badgeColor: revealed ? '#F7F5EE' : 'rgba(27,42,34,0.4)',
+        textColor: revealed ? '#1B2A22' : 'rgba(27,42,34,0.35)',
+        font: revealed ? "'Public Sans',sans-serif" : "'Public Sans',sans-serif",
+        fontStyle: 'normal',
+      };
+    });
+
+    const blurTable = [16, 12, 9, 7, 5, 3, 1.4, 0];
+    const photoBlur = `blur(${blurTable[Math.min(hintsRevealed - 1, 7)]}px)`;
+
+    const scoreForHintIndex = this.scoreForHintIndex || (() => 0);
+    const potentialScore = scoreForHintIndex(hintsRevealed - 1);
+
+    // decoys: other session players + one outside name, stable per round
+    const others = players.filter((p, i) => i !== this.state.roundIndex).map(p => p.name);
+    const extraNames = ['Mitchell Starc', 'Smriti Mandhana', 'Rashid Khan', 'Alyssa Healy'];
+    const pool = [...others, ...extraNames].slice(0, 3);
+    const chipNames = [...pool, player.name].sort(() => 0); // keep deterministic order
+    const decoyChips = chipNames.map(name => ({
+      name,
+      onPick: () => this.pickDecoy(name),
+    }));
+
+    const lastEntry = this.state.sessionLog[this.state.sessionLog.length - 1];
+    const correctCount = this.state.sessionLog.filter(r => r.correct).length;
+    const totalScore = this.state.sessionLog.reduce((sum, r) => sum + r.points, 0);
+    let bestStreak = 0, cur = 0;
+    this.state.sessionLog.forEach(r => { cur = r.correct ? cur + 1 : 0; bestStreak = Math.max(bestStreak, cur); });
+
+    const sessionLog = this.state.sessionLog.map(r => ({
+      name: r.name,
+      resultLabel: r.correct ? '✓ Correct' : '✗ Missed',
+      resultColor: r.correct ? '#1F5C3F' : '#B3432B',
+      hintsUsed: r.hintsUsed,
+      points: r.points,
+    }));
+
+    return {
+      isHome: screen === 'home',
+      isPlay: screen === 'play',
+      isReveal: screen === 'reveal',
+      isResults: screen === 'results',
+      isProfile: screen === 'profile',
+
+      navHomeColor: screen === 'home' ? '#143C2A' : 'rgba(27,42,34,0.55)',
+      navPlayColor: screen === 'play' ? '#143C2A' : 'rgba(27,42,34,0.55)',
+      navProfileColor: screen === 'profile' ? '#143C2A' : 'rgba(27,42,34,0.55)',
+
+      goHome: this.goHome,
+      goPlayFromNav: this.goPlayFromNav,
+      goProfile: this.goProfile,
+      startGame: this.startGame,
+
+      roundDisplay: this.state.roundIndex + 1,
+      roundHeaderLabel: isReplay ? `Replay — Edition ${allPlayers.length ? (EDITION_META.find(m => m.playerIdx === this.state.replayIndex) || {}).edition || '' : ''}` : `Cricketer ${this.state.roundIndex + 1} of 7`,
+      hintsRevealed,
+      potentialScore,
+      progressPct: `${(hintsRevealed / 8) * 100}%`,
+      hintRows,
+      revealNextHint: this.revealNextHint,
+      noMoreHints: hintsRevealed >= 8,
+      revealButtonLabel: hintsRevealed >= 8 ? 'All hints revealed' : `Reveal Hint ${hintsRevealed + 1}`,
+
+      photoSlotId: `photo-${player.id}-a`,
+      photoBlur,
+
+      guessValue: this.state.guessValue,
+      onGuessChange: this.onGuessChange,
+      submitGuess: this.submitGuess,
+      decoyChips,
+      wrongFlash: this.state.wrongFlash,
+      inputBorderColor: this.state.wrongFlash ? '#B3432B' : 'rgba(20,60,42,0.25)',
+      attemptsLeftLabel: (8 - hintsRevealed) > 0 ? `${8 - hintsRevealed} hint${8 - hintsRevealed === 1 ? '' : 's'} left` : 'last chance',
+
+      resultBg: this.state.lastCorrect ? 'rgba(31,92,63,0.12)' : 'rgba(179,67,43,0.12)',
+      resultColor: this.state.lastCorrect ? '#1F5C3F' : '#B3432B',
+      resultIcon: this.state.lastCorrect ? '✓' : '✗',
+      resultLabel: this.state.lastCorrect ? 'Correct Guess' : 'Not Quite',
+      currentPlayerName: player.name,
+      currentPlayerFact: player.fact,
+      pointsEarned: this.state.lastPoints,
+      nextRound: this.nextRound,
+      nextButtonLabel: isReplay ? 'Back to Home →' : (this.state.roundIndex >= SESSION_SIZE - 1 ? 'See Results →' : 'Next Cricketer →'),
+
+      totalScore,
+      correctCount,
+      bestStreak,
+      sessionLog,
+      pastEditions,
+      playAgain: this.playAgain,
+    };
+  }
+}
+
+</script>
+</body>
+</html>
