@@ -1,5 +1,11 @@
 {
   "version": 2,
+  "rewrites": [
+    { "source": "/play",    "destination": "/Cricket%20Trivia%20A.dc.html" },
+    { "source": "/trivia",  "destination": "/Cricket%20Trivia%20A.dc.html" },
+    { "source": "/guess",   "destination": "/CrickGuess.dc.html" },
+    { "source": "/options", "destination": "/Cricket%20Trivia%20Options.dc.html" }
+  ],
   "headers": [
     {
       "source": "/(.*)\\.js",
